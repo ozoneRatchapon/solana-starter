@@ -1,6 +1,9 @@
 import { Keypair, PublicKey, Connection, Commitment } from "@solana/web3.js";
 import { getOrCreateAssociatedTokenAccount, mintTo } from "@solana/spl-token";
-import wallet from "../wba-wallet.json";
+import { readFileSync } from 'fs';
+import { join } from 'path';
+const walletPath = join(process.env.HOME || process.env.USERPROFILE || '', '.config', 'solana', 'id.json');
+const wallet = JSON.parse(readFileSync(walletPath, 'utf-8'));
 
 // Import our keypair from the wallet file
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
@@ -24,7 +27,12 @@ const mint = new PublicKey("3N2fxpEWCp48Es3Xc9bfSHMF77qJ9onucQr55uQTE7u5");
       keypair.publicKey,
     );
     console.log(`Your ata is: ${ata.address.toBase58()}`);
-
+    // 2pDty9vXdw2HdNpM9qurgTRgxVLAWVojAGVaS9E2fdsG - first run ATA
+    // 2pDty9vXdw2HdNpM9qurgTRgxVLAWVojAGVaS9E2fdsG - other run ATA
+    // https://solscan.io/account/2pDty9vXdw2HdNpM9qurgTRgxVLAWVojAGVaS9E2fdsG?cluster=devnet
+    // if you want to use the same ATA address, you can use the same mint address
+    // if not, you can create a new mint address
+    
     // Mint to ATA
     const mintTx = await mintTo(
       connection,
