@@ -40,7 +40,7 @@ const wallet = JSON.parse(readFileSync(walletPath, 'utf-8'));
 // Import our keypair from the wallet file
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
 
-//Create a Solana devnet connection
+//Create a Solana devnet connection≠
 const commitment: Commitment = "confirmed";
 const connection = new Connection("https://api.devnet.solana.com", commitment);
 
@@ -54,14 +54,15 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
     const mint = await createMint(
       connection, // Connection to the network
       keypair, // Keypair of the wallet owner
-      keypair.publicKey, // Mint authority
-      null, // Freeze authority
+      keypair.publicKey, // Mint authority - can be different from the wallet owner
+      null, // Optional freeze authority
       6, // Decimals
     );
     console.log(`Mint created at ${mint.toBase58()}`);
     // 3N2fxpEWCp48Es3Xc9bfSHMF77qJ9onucQr55uQTE7u5 - Mint Token Address First Run
     // Ga7a2FjtEMAkHoP7QoEjKKGtzZCZW4XvJfRcZGVvYNgr - Mint Token Address Other Run
-    // https://solscan.io/token/Ga7a2FjtEMAkHoP7QoEjKKGtzZCZW4XvJfRcZGVvYNgr?cluster=devnet
+    // BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW - Mint Token Address Q2 2025
+    // https://solscan.io/token/BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW?cluster=devnet
     // every run file has a new mint address
   } catch (error) {
     console.log(`Oops, something went wrong: ${error}`);
