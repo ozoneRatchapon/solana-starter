@@ -15,7 +15,7 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
 const token_decimals = 1_000_000n;
 
 // Mint address
-const mint = new PublicKey("BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW");
+const mint = new PublicKey("DUKaveSuV1G4a2AwiDyTnBMZ37AoAjpTaLMC3CsLEdzf");
 
 (async () => {
   try {
@@ -33,6 +33,7 @@ const mint = new PublicKey("BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW");
     // if you want to use the same ATA address, you can use the same mint address
     // if not, you can create a new mint address
     // 8JTDvJ1yTA6m96bMviwtVLQv7EwguyGKoNFbBLojTbLp - ATA address from new mint address for Q2 2025
+    // HWoHW7kFQJYgwoquAqYnu2oToWVucKsV119sTPGCpwd5 - ATA address from new mint address for Q2 2025 (2)
     // https://solscan.io/account/8JTDvJ1yTA6m96bMviwtVLQv7EwguyGKoNFbBLojTbLp?cluster=devnet
     
     // Mint to ATA
@@ -42,11 +43,13 @@ const mint = new PublicKey("BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW");
       mint,
       ata.address,
       keypair.publicKey,
-      12345,
+      1_000_000n * token_decimals, // 1 million tokens
     );
     console.log(`Your mint txid: ${mintTx}`);
     // 3vkNvFpxbfxiawDgtCbaWEJpGhbuqg9FqYDZrR4qQ4yoqXpY5Ggg5f3VCS9auMYEuMnSLY2N4Mte2PqCkDtKXyEB - Q2 2025 mint tx
-    // https://solscan.io/tx/3vkNvFpxbfxiawDgtCbaWEJpGhbuqg9FqYDZrR4qQ4yoqXpY5Ggg5f3VCS9auMYEuMnSLY2N4Mte2PqCkDtKXyEB?cluster=devnet
+    // 3WY7vQ3oXexk5hS7j3SWNxZR8KXbaBHSA7HJrmobURm6iqHDTK9CrxwYJKqLXmqztBzpuDWQ96beosZGK5m5XuQD
+    // 5RQejkKpjSjySwmt4ztipKn6pGxbGTJu4hTvEBdL3rVjZkByHruk5X952AWBwNh36gjT4AfMkcB29YHc24kueACY - Q2 2025 mint tx (3)
+    // https://solscan.io/tx/3WY7vQ3oXexk5hS7j3SWNxZR8KXbaBHSA7HJrmobURm6iqHDTK9CrxwYJKqLXmqztBzpuDWQ96beosZGK5m5XuQD?cluster=devnet
   } catch (error) {
     console.log(`Oops, something went wrong: ${error}`);
   }

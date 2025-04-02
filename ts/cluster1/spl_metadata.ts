@@ -1,4 +1,10 @@
-import wallet from "../wba-wallet.json";
+// import wallet from "../wba-wallet.json";
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const walletPath = join(process.env.HOME || process.env.USERPROFILE || '', '.config', 'solana', 'id.json');
+const wallet = JSON.parse(readFileSync(walletPath, 'utf-8'));
+
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import {
   createMetadataAccountV3,
@@ -14,7 +20,7 @@ import {
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 
 // Define our Mint address
-const mint = publicKey("3N2fxpEWCp48Es3Xc9bfSHMF77qJ9onucQr55uQTE7u5");
+const mint = publicKey("DUKaveSuV1G4a2AwiDyTnBMZ37AoAjpTaLMC3CsLEdzf");
 
 // Create a UMI connection
 const umi = createUmi("https://api.devnet.solana.com");
@@ -31,9 +37,9 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
     };
 
     let data: DataV2Args = {
-      name: "GreenMove",
+      name: "GreenMove2",
       symbol: "GM",
-      uri: "https://arweave.net/1234",
+      uri: "https://pbs.twimg.com/media/Ghi0R70acAIAOZC?format=jpg", // https://arweave.net/1234
       sellerFeeBasisPoints: 100,
       creators: [
         {
@@ -60,6 +66,9 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
     let result = await tx.sendAndConfirm(umi);
     console.log(bs58.encode(result.signature));
     // 4bXjUEdtQffNyptHG45zYRctnaCwsURTce5Mxj1ZtADpRKBJ7ejrthLQXr89YojLah8f7kjCmuRshQ4Re8msAQRT
+    // 53oorVb3bvr1pewwTYwQmX9RUsS62bva8Sim3ETizqwD1cpkqyGGWPapkMZWR8bvCtFHqXErnzzXBbFMFGD2y2yZ - Q2 2025
+    // 2EMXiYBU6h3HnBuXe2VkpoCHQYD5tuCw7pikPQRYNe4tkzio8yJcH8yztpmh4koSn61DtN9eBY1RYSWtLzTa7ooW
+    // https://solscan.io/tx/2EMXiYBU6h3HnBuXe2VkpoCHQYD5tuCw7pikPQRYNe4tkzio8yJcH8yztpmh4koSn61DtN9eBY1RYSWtLzTa7ooW?cluster=devnet
   } catch (e) {
     console.error(`Oops, something went wrong: ${e}`);
   }

@@ -62,6 +62,7 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
     // 3N2fxpEWCp48Es3Xc9bfSHMF77qJ9onucQr55uQTE7u5 - Mint Token Address First Run
     // Ga7a2FjtEMAkHoP7QoEjKKGtzZCZW4XvJfRcZGVvYNgr - Mint Token Address Other Run
     // BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW - Mint Token Address Q2 2025
+    // DUKaveSuV1G4a2AwiDyTnBMZ37AoAjpTaLMC3CsLEdzf - Mint Token Address Q2 2025 (2)
     // https://solscan.io/token/BmGqzLS1T3Hf4XGFiGKsG2ejmybFmYsg1iF1zEND59BW?cluster=devnet
     // every run file has a new mint address
   } catch (error) {
