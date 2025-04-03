@@ -1,4 +1,11 @@
-import wallet from "../wba-wallet.json";
+// import wallet from "../wba-wallet.json";
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const walletPath = join(process.env.HOME || process.env.USERPROFILE || '', '.config', 'solana', 'id.json');
+const wallet = JSON.parse(readFileSync(walletPath, 'utf-8'));
+
+
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import {
   createGenericFile,
@@ -22,18 +29,18 @@ umi.use(signerIdentity(signer));
     // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
     const image =
-      "https://devnet.irys.xyz/6AsELgdAUcoC58KiCENPWVcP9AbBDFg1C8eaCGLDJpzV";
+      "https://devnet.irys.xyz/7BHQ9wvdnQxC6Uy1oVYM51FGdhUmd39dYjmCi3iDZAiL";
     const metadata = {
-      name: "GreenRug",
-      symbol: "GRUG",
-      description: "more Green",
+      name: "Very, Very Rare Rug with Jeff",
+      symbol: "RARERUG",
+      description: "Very, Very Rare Rug with Jeff",
       image: image,
       attributes: [{ trait_type: "", value: "100" }],
       properties: {
         files: [
           {
-            type: "image/png",
-            uri: "https://devnet.irys.xyz/6AsELgdAUcoC58KiCENPWVcP9AbBDFg1C8eaCGLDJpzV",
+            type: "image/gif",
+            uri: "https://devnet.irys.xyz/7BHQ9wvdnQxC6Uy1oVYM51FGdhUmd39dYjmCi3iDZAiL",
           },
         ],
       },
@@ -42,6 +49,7 @@ umi.use(signerIdentity(signer));
     const myUri = await umi.uploader.uploadJson(metadata);
     console.log("Your metadata URI: ", myUri);
     // https://devnet.irys.xyz/Hh2HWh3ntyFr89sHxeuG2z36N8d9PekQdEMAX2nQwgQU
+    // https://devnet.irys.xyz/J7GQS9dStNw16MiBwDwUJ6tBEbpYjunKN6DrLU5RAfZL - Q2 2025
   } catch (error) {
     console.log("Oops.. Something went wrong", error);
   }
